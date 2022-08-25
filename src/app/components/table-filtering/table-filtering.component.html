@@ -1,0 +1,63 @@
+<form class="search-form">
+  <div class="search-form__filter">
+    <label for="filter">
+      <input
+        id="filter"
+        type="text"
+        name="filter"
+        placeholder="Search description"
+        class="search-form__filter-input"
+        [formControl]="filter"
+      />
+    </label>
+  </div>
+</form>
+
+<table class="table">
+  <thead>
+    <tr class="table__head">
+      <th scope="col" class="table__head-th">#</th>
+      <th scope="col" class="table__head-th">Description</th>
+      <th scope="col" class="table__head-th">Received Date</th>
+      <th scope="col" class="table__head-th">Assignings</th>
+      <th scope="col" class="table__head-th">Status</th>
+      <th scope="col" class="table__head-th">Priority</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rowData of orders$ | async" 
+      class="table__row"
+    >
+      <th
+        scope="row"
+        class="table__row-th"
+        [ngClass]="{'table__row-th--red' : (rowData.status === 'New'
+          || rowData.priority === 'High')}"
+      >
+        {{rowData.work_order_id}}
+      </th>
+      <td class="table__row-td">{{rowData.description}}</td>
+      <td class="table__row-td">{{rowData.received_date}}</td>
+      <td class="table__row-td">
+        <ol class="table__row-list">
+          <li *ngFor="let assing of rowData.assigned_to">
+            {{assing.person_name}} / {{assing.status}} 
+          </li>
+        </ol>
+      </td>
+      <td class="table__row-td"
+        [ngClass]="{'table__row-td--new' : rowData.status === 'New',
+          'table__row-td--confirmed' : rowData.status === 'Confirmed',
+          'table__row-td--canceled' : rowData.status === 'Canceled'}"
+      >
+        {{rowData.status}}
+      </td>
+      <td class="table__row-td"
+        [ngClass]="{'table__row-td--high' : rowData.priority === 'High',
+          'table__row-td--low' : rowData.priority === 'Low'}"
+      >
+        {{rowData.priority}}
+      </td>
+    </tr>
+  </tbody>
+</table>
