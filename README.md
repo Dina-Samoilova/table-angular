@@ -14,9 +14,9 @@ Instruction for installation.
 - run command `code table-angular` or open folder in your IDE
 - in your IDE terminal run command `npm install` or `npm i`
 - run `ng serve` for a dev server and navigate to `http://localhost:4200/`
-- run `ng build` to build the project.
 - if you want to add some changes switch branch `git checkout -b develop` (develop it just a name, you may give any other). If branch already exists try `git checkout develop`
-- after you complete run `git add.` to add all files that changed or created
+- after finish run `ng build` to build the project.
+- run `git add.` to add all files that changed or created
 - then `git commit -m 'commit-message'`
 - `git push origin develop` (if you name your branch other name use it instead develop)
 
